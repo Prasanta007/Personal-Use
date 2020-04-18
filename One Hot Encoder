@@ -1,0 +1,12 @@
+#Code for One Hot Encoder
+
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+ct = ColumnTransformer(transformers = [("encoder", OneHotEncoder(), [3])], remainder = "passthrough")
+X = np.array(ct.fit_transform(X))
+-----------------------------------------------------------------------------------------------------
+
+#Taking care of Dummy Variable Trap
+
+X = X[ : , 1:]
+-----------------------------------------------------------------------------------------------------
