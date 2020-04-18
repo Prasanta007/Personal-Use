@@ -1,0 +1,38 @@
+#Importing the libraries
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+-------------------------------------------------------------
+#Importing the dataset
+#Dividing the dataset into Independent Variable(X) and Dependent variable(y)
+
+dataset = pd.read_csv("50_Startups.csv")
+X = dataset.iloc[ : , :-1].values
+y = dataset.iloc[ : , -1].values
+-------------------------------------------------------------
+#Performing Backward Elimination
+
+import statsmodels.api as sm
+
+X = np.append(arr = np.ones((40, 1), dtype =int), values = X, axis = 1)
+X_optimal = X[ : , [0,1,2,3,4,5]]
+X_optimal = np.array(X_optimal, dtype=float)
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[ : , [0,1,2,3,4]]
+X_optimal = np.array(X_optimal, dtype=float)
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[ : , [0,1,2,4]]
+X_optimal = np.array(X_optimal, dtype=float)
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[ : , [0,1,4]]
+X_optimal = np.array(X_optimal, dtype=float)
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+----------------------------------------------------------------
